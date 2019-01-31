@@ -1,0 +1,84 @@
+<md-dialog aria-label="List dialog" flex flex="100">
+    <md-dialog-content>
+      
+        <md-card ng-show="selected.length <= 0">
+        <md-card-header>
+		<md-card-title>
+			<i class="far fa-plus-square"></i> &nbsp;&nbsp;
+			<b>قيم الطقم</b>
+		</md-card-title>
+        </md-card-header>
+        
+        <md-card-content flex="100" style="width:100%">
+            <md-input-container flex="25" style="width:20%">
+                <label>اسم القيمة</label>
+                <input ng-model="value.name" placeholder="ادخل الاسم" type="text" required>
+            </md-input-container>
+            <md-input-container flex="25"  style="width:20%">
+                <label>لون النص</label>
+                <input ng-model="value.text_color" placeholder="أنقر لإختيار لون النص" type="color">
+            </md-input-container>
+            <md-input-container flex="25"  style="width:20%">
+                <label>لون الخلفية</label>
+                <input ng-model="value.bg_color" placeholder="أنقر لإختيار لون الخلفية" type="color">
+            </md-input-container> 
+            <md-input-container flex="25"  style="width:20%">
+                <label>القيمة</label>
+                <input ng-model="value.value" placeholder="ادخل القيمة" type="text">  
+            </md-input-container>
+            <md-input-container flex="25"  style="width:10%">
+                <md-button class="md-primary md-raised" ng-click="addNewValue()">+</md-button> 
+            </md-input-container>
+        </md-card-content>
+        </md-card>
+      
+       <md-card>
+      
+        <md-toolbar class="md-table-toolbar alternate" ng-show="options.rowSelection && selected.length">
+          <div class="md-toolbar-tools">
+            <span>تم تحديد {{selected.length}} {{selected.length > 2 ? 'عناصر' : 'عنصر'}}</span>
+             <span flex></span>
+
+            <md-button ng-click="deleteSelected()" class="md-icon-button" aria-label="Delete selected items">
+              <i class="fas fa-trash ng-scope" ></i>
+            </md-button>
+          </div>
+        </md-toolbar>
+        
+        <md-table-container>
+   
+          <table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}" ng-model="selected" md-progress="promise" dir="rtl">
+            <thead ng-if="!options.decapitate" md-head md-order="query.order" md-on-reorder="logOrder">
+              <tr md-row>
+                <th style="text-align:right" md-column md-order-by="name"><span>الاسم</span></th>
+                <th style="text-align:right" md-column md-order-by="type"><span>لون النص</span></th>
+                <th style="text-align:right" md-column md-order-by="type"><span>لون الخلفية</span></th>
+                <th style="text-align:right" md-column md-order-by="type"><span>القيمة</span></th>
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr md-row md-select="value" md-on-select="logItem" md-auto-select="options.autoSelect" ng-repeat="value in values.data | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                <td style="text-align:right" md-cell ng-click="editName($event, value)" ng-class="{'md-placeholder': !value.name}">{{value.name}}</td>
+                <td style="text-align:right; background-color:{{value.text_color}}" md-cell ng-click="editFontColor($event, value)" ng-class="{'md-placeholder': !value.text_color}">{{value.font_color}}</td>
+                <td style="text-align:right; background-color:{{value.bg_color}}" md-cell ng-click="editBackgroundColor($event, value)" ng-class="{'md-placeholder': !value.bg_color}">{{value.bg_color}}</td>
+                <td style="text-align:right" md-cell ng-click="editValue($event, value)" ng-class="{'md-placeholder': !value.value}">{{value.value}}</td>
+               
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+
+        <md-table-pagination style="text-align:left; direction:ltr" md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{values.count}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
+      </md-card>
+       
+       
+	 </md-dialog-content>
+	 <md-dialog-actions>
+	   <md-button ng-click="close()" class="md-primary">
+		 إغلاق
+	   </md-button>
+	   <md-button ng-click="save()" class="md-primary">
+		 حفظ
+	   </md-button>
+    </md-dialog-actions>
+</md-dialog>

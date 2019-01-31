@@ -1,0 +1,86 @@
+<md-content laout="column" flex ng-controller="questionnaireCtrl">
+  
+      
+      <md-card>
+        
+        <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+          <div class="md-toolbar-tools">
+            <span>الإستبيانات</span>
+            <div flex></div>
+            <md-button class="md-icon-button" ng-click="loadStuff()">
+              <i class="fas fa-sync"></i>
+            </md-button>
+          </div>
+        </md-toolbar>
+        
+        <md-toolbar class="md-table-toolbar alternate" ng-show="options.rowSelection && selected.length">
+          <div class="md-toolbar-tools">
+            <span>تم تحديد {{selected.length}} {{selected.length > 2 ? 'عناصر' : 'عنصر'}}</span>
+             <span flex></span>
+
+            <md-button ng-click="deleteSelected()" class="md-icon-button" aria-label="Delete selected items">
+              <i class="fas fa-trash ng-scope" ></i>
+            </md-button>
+
+            <md-button ng-click="compareSelected()" class="md-icon-button" aria-label="Delete selected items">
+              <i class="fas fa-sync ng-scope" ></i>
+            </md-button>
+          </div>
+        </md-toolbar>
+        
+        <md-table-container>
+          <table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}" ng-model="selected" md-progress="promise" dir="rtl">
+            <thead ng-if="!options.decapitate" md-head md-order="query.order" md-on-reorder="logOrder">
+              <tr md-row>
+                <th style="text-align:right" md-column md-order-by="name"><span>الاسم</span></th>
+                <th style="text-align:right" md-column md-order-by="start_date"><span>تاريخ البداية</span></th>
+                <th style="text-align:right" md-column md-order-by="end_date"><span>تاريخ النهاية</span></th>
+                <th style="text-align:right" md-column md-order-by="type"><span>النوع</span></th>
+                <th style="text-align:right" md-column md-order-by="about">
+                  <i class="fas fa-comment"></i>
+                  <span>حول الإستبيان</span>
+                </th>
+                <th>
+                    إجراء
+                </th>
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr md-row md-select="item" md-on-select="logItem" ng-repeat="item in items.data | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                <td style="text-align:right" md-cell ng-click="editName($event, item)" ng-class="{'md-placeholder': !item.name}">{{item.name}}</td>
+                <td style="text-align:right" md-cell ng-click="editStartDate($event, item)" ng-class="{'md-placeholder': !item.start_date}">{{item.start_date | date : 'yyyy-MM-dd'}}</td>
+                <td style="text-align:right" md-cell ng-click="editEndDate($event, item)" ng-class="{'md-placeholder': !item.end_date}">{{item.end_date | date : 'yyyy-MM-dd'}}</td>
+                <td style="text-align:right" md-cell>
+                  <md-select ng-model="item.type" ng-change="editType(item)">
+                    <md-option ng-value="type.value" ng-repeat="type in questionnaireTypes">{{type.name}}</md-option>
+                  </md-select>
+                </td>
+                <td style="text-align:right" md-cell ng-click="editAbout($event, item)" ng-class="{'md-placeholder': !item.about}">
+                  {{ item.about }}
+                </td>
+                <td style="text-align:right" md-cell >
+                  <md-button class="md-fab md-mini md-primary" ng-click="showDomains($event, item)">
+                    <md-tooltip>عرض محاور الإستبيان</md-tooltip>
+                    <i class="fa fa-list-alt"></i>
+                  </md-button>
+                  <a md-button class="md-fab md-mini md-accent" href="review-survey/{{item.id}}" target="blank">
+                    <md-tooltip>إحصاءات أسئلة الإستبيان</md-tooltip>
+                    <i class="fa fa-copy"></i>
+                  </a>
+                  <a md-button class="md-fab md-mini md-warn" href="review-survey-domains/{{item.id}}" target="blank">
+                    <md-tooltip>إحصاءات محاور الإستبيان</md-tooltip>
+                    <i class="fa fa-th-list"></i>
+                  </a>
+                  <a md-button class="md-fab md-mini md-default" href="review-survey-pivot/{{item.id}}" target="blank">
+                    <md-tooltip>العرض الجدولي لإحصاءات الإستبيان</md-tooltip>
+                    <i class="fa fa-table"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+
+        <md-table-pagination style="text-align:left; direction:ltr" md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{items.count}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
+      </md-card>
+    </md-content>

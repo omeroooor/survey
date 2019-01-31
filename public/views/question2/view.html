@@ -1,0 +1,58 @@
+<md-content laout="column" flex ng-controller="answerSetCtrl">
+  
+      
+      <md-card>
+        
+        <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+          <div class="md-toolbar-tools">
+            <span>Nutrition</span>
+            <div flex></div>
+            <md-button class="md-icon-button" ng-click="loadStuff()">
+              <i class="fas fa-sync"></i>
+            </md-button>
+          </div>
+        </md-toolbar>
+        
+        <md-toolbar class="md-table-toolbar alternate" ng-show="options.rowSelection && selected.length">
+          <div class="md-toolbar-tools">
+            <span>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected</span>
+          </div>
+        </md-toolbar>
+        
+        <md-table-container>
+          <table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}" ng-model="selected" md-progress="promise" dir="rtl">
+            <thead ng-if="!options.decapitate" md-head md-order="query.order" md-on-reorder="logOrder">
+              <tr md-row>
+                <th style="text-align:right" md-column md-order-by="name"><span>الاسم</span></th>
+                <th style="text-align:right" md-column md-order-by="type"><span>النوع</span></th>
+                <th style="text-align:right" md-column md-order-by="description">
+                  <i class="fas fa-comment"></i>
+                  <span>الوصف</span>
+                </th>
+                <th>
+                    إجراء
+                </th>
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr md-row md-select="item" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="item.calories.value > 400" ng-repeat="item in items.data | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                <td style="text-align:right" md-cell ng-click="editTitle($event, item)" ng-class="{'md-placeholder': !item.name}">{{item.name}}</td>
+                <td style="text-align:right" md-cell>
+                  <md-select ng-model="item.type" ng-change="updateItemType(item)">
+                    <md-option ng-value="type.value" ng-repeat="type in answerSetTypes">{{type.name}}</md-option>
+                  </md-select>
+                </td>
+                <td style="text-align:right" md-cell ng-click="editDescription($event, item)" ng-class="{'md-placeholder': !item.description}">
+                  {{ item.description }}
+                </td>
+                <td style="text-align:right" md-cell ng-click="showValues($event, item)">
+                  عرض القيم
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+
+        <md-table-pagination style="text-align:left; direction:ltr" md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{items.count}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
+      </md-card>
+    </md-content>

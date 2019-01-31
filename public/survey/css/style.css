@@ -1,0 +1,24 @@
+.sheet {
+    width: 80%;
+    font-size: 16pt;
+    vertical-align: center;
+    text-align: center;
+}
+
+.domain-name {
+    margin: 4px;
+    padding: 4px;
+    width: 100%;
+    background-color: rgba(0,99,255,0.5);
+    font-size: 16pt;
+    vertical-align: center;
+}
+
+.question-name {
+    margin: 8px;
+    padding: 4px;
+    width: 100%;
+    background-color: rgba(99,0,255,0.5);
+    font-size: 16pt;
+    vertical-align: center;
+}

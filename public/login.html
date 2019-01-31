@@ -1,0 +1,35 @@
+<md-content flex layout-padding ng-controller="loginCtrl">
+
+<div layout="row" layout-align="center center">
+<md-card layout-align-gt-xs>
+		<md-card-header style="text-align:center">
+			<md-card-title>
+				تسجيل الدخول
+			</md-card-title>
+		</md-card-header>
+		<md-card-content>
+			<form name="loginForm">
+			<md-input-container>
+			  <label>البريد الإلكتروني</label>
+			  <input type="text" name="email" ng-model="loginData.email" required md-maxlength="20" required>
+			  <div ng-messages="loginForm.loginData.email.$error">
+				  <div ng-message="required">This is required!</div>
+			  </div>
+			</md-input-container>
+			<br>
+			<md-input-container>
+			  <label>كلمة المرور</label>
+			  <input type="password" ng-model="loginData.password" required md-maxlength="20" required>
+			</md-input-container>
+			<br>
+			<md-button  class="md-primary md-raised" ng-click="login()">دخول</md-button>
+			<md-button class="md-accent md-raised" ng-click="signup()">مستخدم جديد</md-button>
+		  </form>
+		</md-card-content>
+		 <md-card-footer>
+		  
+		 </md-card-footer>
+	</md-card>
+	
+</div>
+</md-content>

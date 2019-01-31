@@ -1,0 +1,17 @@
+<md-content laout="column" flex ng-controller="surveyCtrl">
+       
+    <md-card ng-repeat="item in items">
+    
+        <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+          <div class="md-toolbar-tools">
+            <span>Nutrition</span>
+            <div flex></div>
+            <md-button class="md-icon-button" ng-click="loadStuff()">
+              <i class="fas fa-sync"></i>
+            </md-button>
+          </div>
+        </md-toolbar>
+    
+    </md-card>
+        
+</md-content>

@@ -1,0 +1,30 @@
+<md-content flex layout-padding ng-controller="verificationCtrl">
+
+<div layout="row" layout-align="center center">
+
+<form name="verificationForm" ng-submit="verify()">
+
+<md-card layout="column">
+		<md-card-header style="text-align:center">
+			<md-card-title>
+				تأكيد البريد الإلكتروني
+			</md-card-title>
+		</md-card-header>
+		<md-card-content>
+				<md-input-container layout="column" flex="100">
+				  <label>رمز التأكيد</label>
+				  <input type="text" name="code" style="width:100%" ng-model="code" required>
+				  <div ng-messages="verificationForm.code.$error">
+					  <div ng-message="required">يجب إدخال رمز التأكيد أولاً</div>
+				  </div>
+				</md-input-container>
+		</md-card-content>
+		 <md-card-footer layout-align="center center">
+			<md-button type="submit" class="md-primary md-raised">تأكيد</md-button>
+			<md-button class="md-accent" ng-click="resendVerificationCode()">إعادة إرسال رمز التأكيد</md-button>
+		 </md-card-footer>
+	</md-card>
+	
+	</form>
+</div>
+</md-content>

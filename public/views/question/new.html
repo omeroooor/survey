@@ -1,0 +1,50 @@
+<md-content flex layout-padding ng-controller="questionCtrl" id="questionCtrl">
+
+<div layout-align="center center">
+
+<md-card layout="column" layout-sm>
+<form enctype="multipart/form-data" name="group_form" id="question_form" ng-submit="saveQuestion()">
+	
+	<md-card-header>
+		<md-card-title>
+			<i class="far fa-plus-square"></i> &nbsp;&nbsp;
+			<b>سؤال جديد</b>
+		</md-card-title>
+	</md-card-header>
+	
+	<md-card-content>
+		
+		<md-input-container  layout="column" flex="100">
+		  <label>الاسم</label>
+		  <input type="text" name="name" ng-model="question.name" md-maxlength="120" minlength="4" style="width:100%" required>
+		  <div ng-messages="group_form.name.$error" style="color:maroon" role="alert">
+			<div ng-message="required">الاسم مطلوب</div>
+			<div ng-message="minlength">الاسم قصير جداً</div>
+			<div ng-message="md-maxlength">الاسم طويل جداً</div>
+		  </div>
+		</md-input-container>
+		
+		<md-input-container  layout="column" flex="100">
+		  <label>طقم الإجابات</label>
+		  <md-select name="answerSet" ng-model="question.answerSet" style="width:100%" required>
+			<md-select-header>
+			  <span> طقم الإجابات - </span>
+			</md-select-header>
+			<md-option ng-value="answerSet.id" ng-repeat="answerSet in answerSets">{{ answerSet.name }}</md-option>
+		  </md-select>
+		</md-input-container>
+		
+		<!--md-input-container  layout="column" flex="100">
+		  <label>ستخدم في تصفية البيانات؟</label>
+		  <input type="checkbox" name="meta" ng-model="question.meta">
+		</md-input-container-->
+        
+	</md-card-content>
+	 <md-card-footer>
+		<md-button class="md-primary md-raised" type="submit">إضافة السؤال</md-button>
+	 </md-card-footer>
+	 
+	</form>
+	</md-card>
+</div>	
+</md-content>

@@ -1,0 +1,50 @@
+<md-content flex layout-padding ng-controller="answerSetCtrl" id="answerSetController">
+
+<div layout-align="center center">
+
+<md-card layout="column" layout-sm>
+<form enctype="multipart/form-data" name="group_form" id="answer_set_form" ng-submit="saveAnswerSet()">
+	
+	<md-card-header>
+		<md-card-title>
+			<i class="far fa-plus-square"></i> &nbsp;&nbsp;
+			<b>استبيان جديد</b>
+		</md-card-title>
+	</md-card-header>
+	
+	<md-card-content>
+		
+		<md-input-container  layout="column" flex="100">
+		  <label>الاسم</label>
+		  <input type="text" name="name" ng-model="answerSet.name" md-maxlength="120" minlength="4" style="width:100%" required>
+		  <div ng-messages="group_form.name.$error" style="color:maroon" role="alert">
+			<div ng-message="required">الاسم ملوب</div>
+			<div ng-message="minlength">الاسم قصير جداً</div>
+			<div ng-message="md-maxlength">الاسم طويل جداً</div>
+		  </div>
+		</md-input-container>
+		
+		<md-input-container  layout="column" flex="100">
+		  <label>الوصف</label>
+		  <input type="text" name="description" ng-model="answerSet.description" style="width:100%">
+		</md-input-container>
+		
+		<md-input-container layout="column" >
+		  <label>النوع</label>
+		  <md-select name="type" ng-model="answerSet.type" style="width:100%" required ng-change="typeChanged()">
+			<md-select-header>
+			  <span> النوع - </span>
+			</md-select-header>
+			<md-option ng-value="type.value" ng-repeat="type in answerSetTypes">{{ type.name }}</md-option>
+		  </md-select>
+		</md-input-container>
+        
+	</md-card-content>
+	 <md-card-footer>
+		<md-button class="md-primary md-raised" type="submit">إضافة طقم الإجابات</md-button>
+	 </md-card-footer>
+	 
+	</form>
+	</md-card>
+</div>	
+</md-content>

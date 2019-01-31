@@ -1,0 +1,28 @@
+<md-content  flex layout-padding ng-controller="membersCtrl">
+
+	<md-card>
+		<md-card-header>
+			<md-card-title>
+				تسجيل مجموعة جديدة
+			</md-card-title>
+		</md-card-header>
+		<md-card-content>
+			<form novalidate>
+			عنوان البحث:<br>
+			<input type="text" ng-model="newGroup.title"><br>
+			الجامعة:<br>
+			<input type="text" ng-model="newGroup.university">
+			الكلية:<br>
+			<input type="text" ng-model="newGroup.faculty">
+			المشرف:<br>
+			<input type="text" ng-model="newGroup.supervisor">
+			<br><br>
+			<button ng-click="reset()">إلغاء</button>
+		  </form>
+		</md-card-content>
+		 <md-card-footer>
+		   <md-button>حفظ</md-button>
+		 </md-card-footer>
+	</md-card>
+	
+</md-content>

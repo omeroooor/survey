@@ -1,0 +1,35 @@
+<md-content  flex layout-padding ng-controller="membersCtrl">
+
+	<md-card>
+		<md-card-header>
+			<md-card-title>
+				إضافة عضو جديد للمجموعة
+			</md-card-title>
+		</md-card-header>
+		<md-card-content>
+		
+		<table width="80%" align="center">
+		  <tr>
+			<th>
+				<md-checkbox ng-model="selectedMembers" aria-label="Selected?"></md-checkbox>
+			</th>
+			<th>الاسم</th>
+			<th>رقم الهاتف</th>
+			<th>تعديل/حذف</th>
+		  </tr>
+		  <tr ng-repeat="x in members | orderBy : 'name'">
+			<td align="center"><md-checkbox ng-model="selectedMembers[x.id]" aria-label="Selected?"></md-checkbox></td>
+			<td ng-if="$odd" style="background-color:#f1f1f1">{{ x.name}}</td>
+			<td ng-if="$even">{{ x.name}}</td>
+			<td ng-if="$odd" style="background-color:#f1f1f1">{{ x.phone }}</td>
+			<td ng-if="$even">{{ x.phone }}</td>
+		  </tr>
+		</table>
+		
+		</md-card-content>
+		 <md-card-footer>
+		   <md-button ng-click="showSelectedMembers()">حفظ</md-button>
+		 </md-card-footer>
+	</md-card>
+	
+</md-content>

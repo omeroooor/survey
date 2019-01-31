@@ -1,0 +1,52 @@
+<md-content  flex layout-padding ng-controller="questionCtrl">
+
+<div layout="row" layout-align="center center">
+
+<md-card layout-align-gt-xs>
+<form name="group_form" ng-submit="addQuestion()">
+	
+	<md-card-header>
+		<md-card-title>
+			<i class="fa fa-user-plus"></i> &nbsp;&nbsp;
+			<b>سؤال جديد</b>
+		</md-card-title>
+	</md-card-header>
+	
+	<md-card-content>
+		<md-input-container  layout="column" flex="100">
+		  <label>الاسم</label>
+		  <input type="text" name="name" ng-model="question.name" md-maxlength="60" minlength="3" style="width:100%" required>
+		  <div ng-messages="group_form.name.$error" style="color:maroon" role="alert">
+			<div ng-message="required">الاسم مطلوب</div>
+			<div ng-message="minlength">الاسم قصير جداً</div>
+			<div ng-message="md-maxlength">الاسم طويل جداً</div>
+		  </div>
+		</md-input-container>
+		
+		<md-input-container  layout="column" flex="100">
+		  <label>الوصف</label>
+		  <input type="text" name="description" ng-model="question.description" md-maxlength="600" minlength="0" style="width:100%" required>
+		  <div ng-messages="group_form.description.$error" style="color:maroon" role="alert">
+			<div ng-message="md-maxlength">الوصف طويل جداً</div>
+		  </div>
+		</md-input-container>
+		
+		<md-input-container  layout="column" flex="100">
+		  <label>طقم الإجابات</label>
+		  <input type="answer_set" name="phone" ng-model="question.answer_set"style="width:100%">
+		  <div ng-messages="group_form.answer_set.$error" style="color:maroon" role="alert">
+			<div ng-message="phone">رقم الهاتف الذي ادخلته غير صالح</div>
+		  </div>
+		</md-input-container>
+		<br>
+		
+	</md-card-content>
+	 <md-card-footer>
+		<md-button class="md-primary md-raised" type="submit">تسجيل المجموعة</md-button>
+		<md-button class="md-accent" ng-click="login()">تسجيل الدخول</md-button>
+	 </md-card-footer>
+	 
+	</form>
+	</md-card>
+</div>	
+</md-content>

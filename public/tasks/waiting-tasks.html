@@ -1,0 +1,47 @@
+<md-content flex layout-padding ng-controller="tasksCtrl">
+
+<div layout-align="center center">
+
+<md-card layout="column" layout-sm>
+	<md-card-content>
+		<table width="80%" align="center" class="table table-bordered">
+		  <thead>
+		  <tr>
+			<th>
+				<md-checkbox ng-model="tasks" aria-label="Selected?"></md-checkbox>
+			</th>
+			<th>العضو</th>
+			<th>المهمة</th>
+			<th>نوع المهمة</th>
+			<th>تاريخ البداية</th>
+			<th>تاريخ النهاية</th>
+			<th>التقدم</th>
+		  </tr>
+		  </thead>
+		  <tbody>
+		  <tr ng-repeat="x in tasks | orderBy : 'date'">
+			<td align="center"><md-checkbox ng-model="tasks[index]" aria-label="Selected?"></md-checkbox></td>
+			<td ng-if="$odd" style="background-color:#f1f1f1">{{ x.member.name}}</td>
+			<td ng-if="$even">{{ x.member.name}}</td>
+			<td ng-if="$odd" style="background-color:#f1f1f1">{{ x.title }}</td>
+			<td ng-if="$even">{{ x.title }}</td>
+			<td ng-if="$odd" style="background-color:#f1f1f1">{{ x.startDate }}</td>
+			<td ng-if="$even">{{ x.type.name }}</td>
+			<td ng-if="$odd" style="background-color:#f1f1f1">{{ x.type.name }}</td>
+			<td ng-if="$even">{{ x.startDate }}</td>
+			<td ng-if="$odd" style="background-color:#f1f1f1">{{ x.deadline }}</td>
+			<td ng-if="$even">{{ x.deadline }}</td>
+			<td ng-if="$odd" style="background-color:#f1f1f1">{{ x.progress }}</td>
+			<td ng-if="$even">{{ x.progress }}</td>
+		  </tr>
+		  </tbody>
+		</table>
+		
+</md-card-content>
+<md-card-footer>
+
+</md-card-footer>
+	 
+</md-card>
+</div>	
+</md-content>

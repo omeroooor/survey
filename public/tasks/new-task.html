@@ -1,0 +1,45 @@
+<md-content flex layout-padding ng-controller="planCtrl">
+
+<div layout-align="center center">
+
+<md-card layout="column" layout-sm>
+<form name="group_form" ng-submit="saveItem()">
+	
+	<md-card-header>
+		<md-card-title>
+			<i class="far fa-plus-square"></i> &nbsp;&nbsp;
+			<b>عنصر جديد</b>
+		</md-card-title>
+	</md-card-header>
+	
+	<md-card-content>
+		<md-input-container layout="column" >
+		  <label>العنصر الرئيسي</label>
+		  <md-select ng-model="plan.upper" style="width:100%" required>
+			<md-select-header>
+			  <span> العنصر الرئيسي - </span>
+			</md-select-header>
+			<md-option ng-value="0">لا يوجد</md-option>
+			<md-option ng-value="it.idem" ng-repeat="item in planItems">{{ item.name }}</md-option>
+		  </md-select>
+		</md-input-container>
+		
+		<md-input-container  layout="column" flex="100">
+		  <label>الاسم</label>
+		  <input type="text" name="name" ng-model="plan.name" md-maxlength="60" minlength="3" style="width:100%" required>
+		  <div ng-messages="group_form.name.$error" style="color:maroon" role="alert">
+			<div ng-message="required">الاسم مطلوب</div>
+			<div ng-message="minlength">الاسم قصير جداً</div>
+			<div ng-message="md-maxlength">الاسم طويل جداً</div>
+		  </div>
+		</md-input-container>
+		
+	</md-card-content>
+	 <md-card-footer>
+		<md-button class="md-primary md-raised" type="submit">إضافة العنصر إلى الخطة</md-button>
+	 </md-card-footer>
+	 
+	</form>
+	</md-card>
+</div>	
+</md-content>
