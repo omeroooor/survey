@@ -1,0 +1,52 @@
+<md-content laout="column" flex ng-controller="enhancementCtrl">
+  
+      
+      <md-card>
+        
+        <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+          <div class="md-toolbar-tools">
+            <span>Nutrition</span>
+            <div flex></div>
+            <md-button class="md-icon-button" ng-click="loadStuff()">
+              <i class="fas fa-sync"></i>
+            </md-button>
+          </div>
+        </md-toolbar>
+        
+        <md-toolbar class="md-table-toolbar alternate" ng-show="options.rowSelection && selected.length">
+          <div class="md-toolbar-tools">
+            <span>تم تحديد {{selected.length}} {{selected.length > 2 ? 'عناصر' : 'عنصر'}}</span>
+             <span flex></span>
+
+            <md-button ng-click="deleteSelected()" class="md-icon-button" aria-label="Delete selected items">
+              <i class="fas fa-trash ng-scope" ></i>
+            </md-button>
+          </div>
+        </md-toolbar>
+        
+        <md-table-container>
+          <table md-table md-row-select="options.rowSelection" multiple="{{options.multiSelect}}" ng-model="selected" md-progress="promise" dir="rtl">
+            <thead ng-if="!options.decapitate" md-head md-order="query.order" md-on-reorder="logOrder">
+              <tr md-row>
+                <th style="text-align:right" md-column md-order-by="name"><span>المحور</span></th>
+                <th style="text-align:right" md-column md-order-by="minimum"><span>الحد الأدنى</span></th>
+                <th style="text-align:right" md-column md-order-by="result"><span>النتيجة</span></th>
+                <th style="text-align:center" colspan="3"><span>الأنشطة</span></th>
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr md-row md-select="item" md-on-select="logItem" md-auto-select="options.autoSelect" ng-repeat="item in items.data | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                <td style="text-align:right" md-cell>{{item.domain.domain.name}}</td>
+                <td style="text-align:right" md-cell>{{item.minimum}}</td>
+                <td style="text-align:right" md-cell>{{item.result}}</td>
+                <td style="text-align:right;" md-cell>{{item.activities.length}}</td>
+                <td style="text-align:right" md-cell ng-click="addActivity($event, item)">نشاط جديد</td>
+                <td style="text-align:right" md-cell ng-click="showActivities($event, item)">عرض الأنشطة</td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+
+        <md-table-pagination style="text-align:left; direction:ltr" md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{items.count}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
+      </md-card>
+    </md-content>

@@ -1,0 +1,49 @@
+<md-content flex layout-padding ng-controller="enhancementCtrl" id="enhancementCtrl">
+
+<div layout-align="center center">
+
+<md-card layout="column" layout-sm>
+<form enctype="multipart/form-data" name="group_form" id="question_form" ng-submit="saveEnhancementPlan()">
+	
+	<md-card-header>
+		<md-card-title>
+			<i class="far fa-plus-square"></i> &nbsp;&nbsp;
+			<b>فرصة تحسين</b>
+		</md-card-title>
+	</md-card-header>
+	
+	<md-card-content>
+		
+		<md-input-container  layout="column" flex="100">
+		  <label>الإستبيان</label>
+		  <md-select name="answerSet" ng-model="plan.questionnaire" style="width:100%" required ng-change="getDomains(plan)">
+			<md-option ng-value="questionnaire.id" ng-repeat="questionnaire in questionnaires">{{ questionnaire.name }}</md-option>
+		  </md-select>
+		</md-input-container>
+		
+		<md-input-container  layout="column" flex="100">
+		  <label>المحور</label>
+		  <md-select name="answerSet" ng-model="plan.domain" style="width:100%" required ng-change="updateResults(plan)">
+			<md-option ng-value="domain" ng-repeat="domain in domains">{{ domain.domain.name }}</md-option>
+		  </md-select>
+		</md-input-container>
+		
+		<md-input-container  layout="column" flex="100">
+		  <label>الحد الأدنى</label>
+	      <input type="text" ng-value="plan.minimum" disabled>
+		</md-input-container>
+		
+		<md-input-container  layout="column" flex="100">
+		  <label>النتيجة</label>
+		  <input type="text" ng-model="plan.percentage" disabled>
+		</md-input-container>
+        
+	</md-card-content>
+	 <md-card-footer>
+		<md-button class="md-primary md-raised" type="submit" ng-show="plan.minimum > plan.percentage">إضافة فرصة التحسين</md-button>
+	 </md-card-footer>
+	 
+	</form>
+	</md-card>
+</div>	
+</md-content>

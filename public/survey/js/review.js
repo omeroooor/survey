@@ -25,9 +25,10 @@ function loadData() {
       .key(function(d) { return d.domain; })
       .key(function(d) { return d.question; })
       .key(function(d) { return d.label; })
-      .rollup(function(v) { return {
+      .rollup(function(v, d) { return {
         count: v.length,
-        total: d3.sum(v, function(d) { return d.value; })
+        total: d3.sum(v, function(d) { return d.value; }),
+        total_max: d3.sum(v, function(d) { return d.max; }),
       }; })
       .entries(data.data);
       console.log(answers);
@@ -40,6 +41,7 @@ function loadData() {
               labels = [];
               values = [];
               counts = [];
+              maxes = [];
               datasets = [];
               $.each(questionValue.values, function(labelkey, labelValue){
                   //console.log(labelValue.key)
@@ -56,15 +58,9 @@ function loadData() {
               datasets = [
                     {
                         type: 'bar', 
-                        label: 'عدد الإستبيانات', 
+                        label: 'عدد الإجابات', 
                         data: counts, 
                         backgroundColor: 'rgba(255,99,132,1)',
-                        borderWidth: 1
-                    }, {
-                        type: 'bar', 
-                        label: 'قيمة الإستبيانات', 
-                        data: values, 
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         borderWidth: 1
                     }
                 ]

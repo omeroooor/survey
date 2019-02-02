@@ -109,6 +109,20 @@ if(!session()->has('user_id')) {
 		<!-- Tasks Area -->
 		<md-subheader class="md-no-sticky">
 			<i class="fa fa-tasks"></i> &nbsp;
+			فرص التحسين
+		</md-subheader>
+		<md-list-item role="listitem" ng-href="#!new-enhancement-plan">
+			فرصة تحسين جديدة
+		</md-list-item>
+		<md-list-item role="listitem" ng-href="#!view-enhancement-plans">
+			فرص التحسين
+		</md-list-item>
+		
+		<md-divider></md-divider>
+		
+		<!-- Tasks Area -->
+		<md-subheader class="md-no-sticky">
+			<i class="fa fa-tasks"></i> &nbsp;
 			المحاور
 		</md-subheader>
 		<md-list-item role="listitem" ng-href="#!new-domain">
@@ -195,6 +209,8 @@ if(!session()->has('user_id')) {
 		<script type="text/javascript" src="<?php echo asset('js/controllers/questionnaire.js');?>"></script>
 		<script type="text/javascript" src="<?php echo asset('js/controllers/questionnaire_domain.js');?>"></script>
 		<script type="text/javascript" src="<?php echo asset('js/controllers/questionnaire_question.js');?>"></script>
+		<script type="text/javascript" src="<?php echo asset('js/controllers/enhancement.js');?>"></script>
+		<script type="text/javascript" src="<?php echo asset('js/controllers/enhancement_plan_activity.js');?>"></script>
         
 		<script type="text/javascript" src="<?php echo asset('js/controllers/dialog.js');?>"></script>
 		

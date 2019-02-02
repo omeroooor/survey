@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Questionnaire;
 use App\Http\Resources\Questionnaire as QuestionnaireResource;
+use App\Http\Resources\QuestionnaireDomainEnhancementResource;
 
 use App\QuestionnaireDomain;
 use App\QuestionnaireQuestion;
@@ -81,6 +82,10 @@ class QuestionnaireController extends Controller
     function getAvailableQuestionnaires($type, Request $request) {
         return QuestionnaireResource::collection(Questionnaire::where('type', $type)->get());
         //return view('questionnaires', ['questionnaires'=>$questionnaires]);
+    }
+    
+    function getQuestionnaireDomains($id, Request $request) {
+        return QuestionnaireDomainEnhancementResource::collection(QuestionnaireDomain::where('questionnaire_id', $id)->get());
     }
     
     public function compare($ids, Request $request) {

@@ -58,6 +58,12 @@ app.config(function($routeProvider) {
     .when("/view-questionnaires", {
         templateUrl : "views/questionnaire/view.html"
     })
+    .when("/new-enhancement-plan", {
+        templateUrl : "views/enhancement/new.html"
+    })
+    .when("/view-enhancement-plans", {
+        templateUrl : "views/enhancement/view.html"
+    })
     .when("/logout", {
         templateUrl : "logout.html"
     });

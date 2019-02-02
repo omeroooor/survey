@@ -96,6 +96,8 @@ Route::post('/questionnaire-question', 'QuestionnaireQuestionController@store');
 Route::post('/update-questionnaire-question', 'QuestionnaireQuestionController@update');
 Route::post('/delete-questionnaire-question', 'QuestionnaireQuestionController@delete');
 
+Route::get('/questionnaire-domains/{id}', 'QuestionnaireController@getQuestionnaireDomains');
+
 
 Route::get('/compare/{ids}', function($ids) {
     $data['ids'] = $ids;
@@ -119,4 +121,5 @@ Route::get('/review-survey-pivot/{id}', 'AnswerController@getPivotMetaQuestions'
 Route::get('/get-available-questionnaires/{type}', 'QuestionnaireController@getAvailableQuestionnaires');
 
 
-Route::get('/file-manager', 'FileManagerController@listFiles');
+Route::get('/enhancement-plan', 'EnhancementPlanController@get');
+Route::post('/enhancement-plan', 'EnhancementPlanController@store');

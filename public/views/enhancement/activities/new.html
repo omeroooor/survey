@@ -1,0 +1,75 @@
+<md-dialog aria-label="List dialog" flex flex="100">
+    <md-dialog-content>
+       
+       <md-card layout="column" layout-sm>
+<form enctype="multipart/form-data" name="group_form" id="question_form" ng-submit="saveEnhancementPlanActivity()">
+	
+	<md-card-header>
+		<md-card-title>
+			<i class="far fa-plus-square"></i> &nbsp;&nbsp;
+			<b>نشاط جديد لخطة تحسين محور الــ {{item.domain.domain.name}}</b>
+		</md-card-title>
+	</md-card-header>
+	
+	<md-card-content>
+		<md-input-container  layout="column" flex="100">
+		  <label>اسم النشاط</label>
+	      <input type="text" ng-model="activity.name">
+		</md-input-container>
+        
+		<md-input-container  layout="column" flex="100">
+		  <label>المسئول</label>
+	      <input type="text" ng-model="activity.responsible">
+		</md-input-container>
+        
+		<md-input-container  layout="column" flex="100">
+		  <label>المدة (بالشهور)</label>
+	      <input type="text" ng-model="activity.duration">
+		</md-input-container>
+        
+		<md-input-container  layout="column" flex="100">
+		  <label>تاريخ البداية</label>
+	      <input type="text" ng-model="activity.start_date">
+		</md-input-container>
+        
+		<md-input-container  layout="column" flex="100">
+		  <label>تاريخ النهاية</label>
+	      <input type="text" ng-model="activity.end_date">
+		</md-input-container>
+		
+		<md-input-container  layout="column" flex="100">
+		  <label>نسبة التنفيذ</label>
+		  <input type="text" ng-model="plan.percentage" >
+		</md-input-container>
+		
+		<md-input-container  layout="column" flex="100">
+		  <label>الموارد</label>
+		  <input type="text" ng-model="plan.resources" >
+		</md-input-container>
+		
+		<md-input-container  layout="column" flex="100">
+		  <label>الميزانية</label>
+		  <input type="text" ng-model="plan.budget" >
+		</md-input-container>
+		
+		<md-input-container  layout="column" flex="100">
+		  <label>المؤشرات</label>
+		  <input type="text" ng-model="plan.indicators" >
+		</md-input-container>
+        
+	</md-card-content>
+	 <md-card-footer>
+		<md-button class="md-primary md-raised" type="submit">إضافة النشاط</md-button>
+	 </md-card-footer>
+	 
+	</form>
+	</md-card>
+       
+       
+	 </md-dialog-content>
+	 <md-dialog-actions>
+	   <md-button ng-click="close()" class="md-primary">
+		 إغلاق
+	   </md-button>
+    </md-dialog-actions>
+</md-dialog>
