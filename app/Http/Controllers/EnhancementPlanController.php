@@ -34,4 +34,9 @@ class EnhancementPlanController extends Controller
         $plans = EnhancementPlan::all();
         return EnhancementPlanResource::collection($plans);
     }
+
+    public function getByDomainId(Request $request, $id) {
+        $plans = EnhancementPlan::where('domain_id', $id)->get();
+        return EnhancementPlanResource::collection($plans);
+    }
 }
